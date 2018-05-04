@@ -30,18 +30,18 @@ print("\nGet all vehicle attribute values:")
 
 camera_port = 0
 a=0
-initial_alt=0.0
-final_alt=0.0
+initial_alt=0
+final_alt=0
 
 while True:
-
-    final_alt=float(vehicle.location.global_relative_frame.alt)
-    if (final_alt-initial_alt)>= 5:
+    final_alt=vehicle.location.global_relative_frame.alt
+    if(final_alt-initial_alt==1):
         camera = cv2.VideoCapture(camera_port)
         camera_capture = camera.read()[1]
         file = "image_"+str(a)+".jpg"
         cv2.imwrite(file, img=camera_capture)
         a=a+1
-        print("captured at: ",final_alt)
+	print("captured at: ",final_alt)
         initial_alt=final_alt
-        del (camera)
+
+del (camera)
